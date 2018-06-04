@@ -2,16 +2,25 @@ package com.boottest.fortest.Dao;
 
 import com.boottest.fortest.Entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
-import java.sql.Date;
+import java.sql.Timestamp;
 import  java.util.List;
 
 public interface UserDao extends JpaRepository<UserEntity,Integer>{
-    UserEntity findByName(String name);
-//    UserEntity findByNameAndDepart(String name,int departmentid);
-//    List<UserEntity> queryByCreateDateGreaterThanEqual(Date start);
+    List<UserEntity> findByName(String name);
 
-    @Query("select u from UserEntity u where u.name=?1 and u.departmentId=?2")
-    public UserEntity findUser(String name, Integer departmentId);
+    UserEntity findUserEntitiesById(int id);
+
+    @Query("select  u from UserEntity u ")
+    List<UserEntity> UserList();
+
+    @Modifying
+    @Query(value="update user_dao set create_time=?1 , department_id=?2 , name=?3, address=?4 , password=?5 where id=?6",nativeQuery = true)
+    void Updata(Timestamp create_time, int dep_id, String name, String address, String password, int id);
+
+
+
+
 
 }
