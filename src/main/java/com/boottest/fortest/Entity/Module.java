@@ -21,5 +21,51 @@ public class Module implements Serializable {
     @Column
     private int parentid;
 
+    @Column
+    private int moduleid;
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getParentid() {
+        return parentid;
+    }
+
+    public void setParentid(int parentid) {
+        this.parentid = parentid;
+    }
+
+    public int getModuleid() {
+        return moduleid;
+    }
+
+    public void setModuleid(int moduleid) {
+        this.moduleid = moduleid;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    @Override
+    public String toString(){
+        return "{\"id\":"+id+",\"moduleid\":"+moduleid+"\"name\":"+name+"\"parentid\":"+parentid+"\"url\":"+url+"}";
+    }
 }

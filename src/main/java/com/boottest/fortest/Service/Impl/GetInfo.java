@@ -1,8 +1,10 @@
 package com.boottest.fortest.Service.Impl;
 
+import com.boottest.fortest.Dao.ModuleDao;
 import com.boottest.fortest.Dao.RoleDao;
 import com.boottest.fortest.Dao.UserDao;
 import com.boottest.fortest.Dao.UserRoleDao;
+import com.boottest.fortest.Entity.Module;
 import com.boottest.fortest.Entity.Role;
 import com.boottest.fortest.Entity.UserEntity;
 import com.boottest.fortest.Entity.UserRole;
@@ -25,6 +27,9 @@ public class GetInfo implements IGetInfo{
 
     @Autowired
     private UserRoleDao userRoleDao;
+
+    @Autowired
+    private ModuleDao moduleDao;
     /**
      *   @author 390766
      *   @date   2018/5/18  10:54
@@ -121,5 +126,29 @@ public class GetInfo implements IGetInfo{
         userRoleDao.updataUserRole(uid, rid);
     }
 
+    @Override
+    public List<Module> getModuleList(){
+        return moduleDao.findAll();
+    }
+
+    @Override
+    public Module getModule(int moduleid){
+        return moduleDao.findModuleByModuleid(moduleid);
+    }
+
+    @Override
+    public void addModule(Module module){
+        moduleDao.save(module);
+    }
+
+    @Override
+    public void deleteModule(Module module){
+        moduleDao.delete(module);
+    }
+
+    @Override
+    public void updataModule(int moduleid,int parentid,String url,String name,int id){
+        moduleDao.updataModule(moduleid,parentid,url,name,id);
+    }
 
 }

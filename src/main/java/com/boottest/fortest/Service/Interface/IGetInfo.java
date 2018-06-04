@@ -1,5 +1,6 @@
 package com.boottest.fortest.Service.Interface;
 
+import com.boottest.fortest.Entity.Module;
 import com.boottest.fortest.Entity.Role;
 import com.boottest.fortest.Entity.UserEntity;
 import com.boottest.fortest.Entity.UserRole;
@@ -44,5 +45,16 @@ public interface IGetInfo {
     void deleteUserRole(UserRole userRole);
 
     void updataUserRole(int uid,int rid);
+
+    //--------------------------Module------------------------------------------------
+    List<Module> getModuleList();
+
+    Module getModule(int moduleid);
+
+    void addModule(Module module);
+
+    void deleteModule(Module module);
+
+    void updataModule(int moduleid,int parentid,String url,String name,int id);
 
 }
