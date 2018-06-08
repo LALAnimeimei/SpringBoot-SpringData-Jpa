@@ -66,6 +66,6 @@ public class Module implements Serializable {
 
     @Override
     public String toString(){
-        return "{\"id\":"+id+",\"moduleid\":"+moduleid+"\"name\":"+name+"\"parentid\":"+parentid+"\"url\":"+url+"}";
+        return "{\"id\":"+id+",\"moduleid\":"+moduleid+",\"name\":"+name+",\"parentid\":"+parentid+",\"url\":"+url+"}";
     }
 }
