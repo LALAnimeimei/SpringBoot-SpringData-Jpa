@@ -22,7 +22,7 @@ public interface IUserService {
     void deleteUser(UserEntity userEntity);
 
     //---------------------------UserRole-------------------------------------------
-    UserRole getUserRole(int uid);
+    List<UserRole> getUserRole(int uid);
 
     void addUserRole(UserRole userRole);
 

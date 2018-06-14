@@ -8,7 +8,6 @@ import net.sf.json.JSONArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -28,8 +27,11 @@ public class MainController {
         List<Module> moduleList=userService.getModuleByUser(user_id);
 
         //返回菜单树
-        //JSONArray json=BaseUtil.getModuleTree(moduleList,0);
-        BaseUtil.httpResponse(response,moduleList.toString());
+        JSONArray json=BaseUtil.getModuleTree(moduleList,0);
+        BaseUtil.httpResponse(response,json.toString());
+
+        //返回菜单列表
+//        BaseUtil.httpResponse(response,moduleList.toString());
     }
 
 }

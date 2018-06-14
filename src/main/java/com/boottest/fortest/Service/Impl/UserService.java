@@ -12,7 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -26,9 +29,6 @@ public class UserService implements IUserService{
 
     @Autowired
     private ModuleDao moduleDao;
-
-    @Autowired
-    private RoleModuleDao roleModuleDao;
 
     @Override
     public List<UserEntity> getUserInfo(String name) {
@@ -70,8 +70,8 @@ public class UserService implements IUserService{
     }
 
     @Override
-    public UserRole getUserRole(int uid){
-        return userRoleDao.findByUid(uid);
+    public List<UserRole> getUserRole(int uid){
+        return userRoleDao.findUserRolesByUid(uid);
     }
 
     @Override
@@ -91,8 +91,12 @@ public class UserService implements IUserService{
 
     @Override
     public List<Module> getModuleByUser(int uid){
-        int rid=userRoleDao.findByUid(uid).getRid();
-       return moduleDao.getModulesByRole(rid);
-//        return  roleModuleDao.getModulesByUser(uid);
+        List<UserRole> userRoleList=userRoleDao.findUserRolesByUid(uid);
+        Set<Module> moduleList=new HashSet<>();
+        for(int i=0;i<userRoleList.size();i++){
+            int rid=userRoleList.get(i).getRid();
+            moduleList.addAll(moduleDao.getModulesByRole(rid));
+        }
+       return  new ArrayList<>(moduleList);
     }
 }
