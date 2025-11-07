@@ -43,7 +43,7 @@ public class HelloController {
         JSONObject json=new JSONObject();
         for(int i=0;i<userEntityList.size();i++){
             UserEntity userEntity=userEntityList.get(i);
-            json.put("name",userEntity.getName());
+            json.put("name",userEntity.getName()  );
             json.put("DepartmentId",userEntity.getDepartmentId());
             json.put("CreateDate",userEntity.getCreateDate().toString());
             jsonArray.add(json);
