@@ -54,7 +54,7 @@ public class HelloController {
 
     @RequestMapping("/user/updata")
     public void UpdataUser(){
-        Timestamp currenttime=new Timestamp(System.currentTimeMillis());
+        Timestamp currenttime=new Timestamp(System.currentTimeMillis()   );
 
         userService.UpdataUser(currenttime,3,"hxupdata","123","123321",1);
     }
