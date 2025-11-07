@@ -38,7 +38,7 @@ public class HelloController {
     @RequestMapping("/user/name/{name}")
     public @ResponseBody JSON GetUser(@PathVariable("name") String name){
         List<UserEntity> userEntityList=userService.getUserInfo(name);
-        System.out.println("进入Controller  ");
+        System.out.println("进入Controller      ");
         JSONArray jsonArray=new JSONArray();
         JSONObject json=new JSONObject();
         for(int i=0;i<userEntityList.size();i++){
