@@ -22,6 +22,6 @@ jobs:
           # 目标目录（可选，默认根目录）
           # directory: docs
           # PAT 密钥
-          github_token: ${{ secrets.sync file }}
+          github_token: ${{ secrets.CROSS_REPO_PAT }}
           # 提交信息
           message: "docs: auto sync from source repo"
