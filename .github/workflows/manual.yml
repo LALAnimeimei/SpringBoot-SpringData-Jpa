@@ -1,0 +1,27 @@
+name: Sync Docs to Target Repo
+
+on:
+  push:
+    branches: [ master ]
+    paths:
+      - 'README.md'    # 同步单个文件（可选）
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Push to target repo
+        uses: ad-m/github-push-action@master
+        with:
+          # 目标仓库格式：用户名/仓库名
+          repository: LALAnimeimei/SSHTamplet
+          # 目标分支（默认 main，按你的改）
+          branch: master
+          # 目标目录（可选，默认根目录）
+          # directory: docs
+          # PAT 密钥
+          github_token: ${{ secrets.sync file }}
+          # 提交信息
+          message: "docs: auto sync from source repo"
