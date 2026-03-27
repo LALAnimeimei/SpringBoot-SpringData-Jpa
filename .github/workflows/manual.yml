@@ -14,20 +14,13 @@ jobs:
         with:
           fetch-depth: 0
 
-      # 直接用 Git 命令同步（最稳定，不报错）
       - name: Sync to target repo
         run: |
           git config --global user.name "Auto Sync"
           git config --global user.email "action@github.com"
-
-          # 克隆目标仓库（用你的 PAT 有权限）
           git clone https://${{ secrets.CROSS_REPO_PAT }}@github.com/LALAnimeimei/SSHTamplet.git target_repo
-
-          # 复制要同步的文件
           cp -r docs README.md target_repo/ 2>/dev/null || true
-
-          # 提交并推送
           cd target_repo
           git add .
-          git commit -m "docs: auto sync from source" || true
+          git commit -m "Auto sync docs" || true
           git push
